@@ -1,0 +1,436 @@
+[
+  {
+    "pdf": "1706.03762v7.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\1706.03762v7.txt",
+    "statistics": {
+      "total_characters": 35549,
+      "total_words": 2081,
+      "total_pages": 15,
+      "sections_found": 6,
+      "tables_found": 10,
+      "avg_words_per_page": 138.73333333333332
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2103.14030v2.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2103.14030v2.txt",
+    "statistics": {
+      "total_characters": 64253,
+      "total_words": 6422,
+      "total_pages": 14,
+      "sections_found": 7,
+      "tables_found": 18,
+      "avg_words_per_page": 458.7142857142857
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24637v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24637v1.txt",
+    "statistics": {
+      "total_characters": 62471,
+      "total_words": 2879,
+      "total_pages": 20,
+      "sections_found": 5,
+      "tables_found": 0,
+      "avg_words_per_page": 143.95
+    },
+    "sections_found": 5
+  },
+  {
+    "pdf": "2510.24639v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24639v1.txt",
+    "statistics": {
+      "total_characters": 83709,
+      "total_words": 11402,
+      "total_pages": 32,
+      "sections_found": 8,
+      "tables_found": 32,
+      "avg_words_per_page": 356.3125
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24643v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24643v1.txt",
+    "statistics": {
+      "total_characters": 171530,
+      "total_words": 20373,
+      "total_pages": 72,
+      "sections_found": 5,
+      "tables_found": 6,
+      "avg_words_per_page": 282.9583333333333
+    },
+    "sections_found": 5
+  },
+  {
+    "pdf": "2510.24645v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24645v1.txt",
+    "statistics": {
+      "total_characters": 41477,
+      "total_words": 2077,
+      "total_pages": 13,
+      "sections_found": 7,
+      "tables_found": 8,
+      "avg_words_per_page": 159.76923076923077
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24650v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24650v1.txt",
+    "statistics": {
+      "total_characters": 89141,
+      "total_words": 4063,
+      "total_pages": 26,
+      "sections_found": 7,
+      "tables_found": 6,
+      "avg_words_per_page": 156.26923076923077
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24663v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24663v1.txt",
+    "statistics": {
+      "total_characters": 39737,
+      "total_words": 2118,
+      "total_pages": 13,
+      "sections_found": 6,
+      "tables_found": 0,
+      "avg_words_per_page": 162.92307692307693
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2510.24668v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24668v1.txt",
+    "statistics": {
+      "total_characters": 46539,
+      "total_words": 3981,
+      "total_pages": 17,
+      "sections_found": 8,
+      "tables_found": 12,
+      "avg_words_per_page": 234.1764705882353
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24671v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24671v1.txt",
+    "statistics": {
+      "total_characters": 36225,
+      "total_words": 4681,
+      "total_pages": 7,
+      "sections_found": 6,
+      "tables_found": 28,
+      "avg_words_per_page": 668.7142857142857
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2510.24673v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24673v1.txt",
+    "statistics": {
+      "total_characters": 60929,
+      "total_words": 8191,
+      "total_pages": 18,
+      "sections_found": 6,
+      "tables_found": 0,
+      "avg_words_per_page": 455.05555555555554
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2510.24674v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24674v1.txt",
+    "statistics": {
+      "total_characters": 83285,
+      "total_words": 12437,
+      "total_pages": 19,
+      "sections_found": 8,
+      "tables_found": 5,
+      "avg_words_per_page": 654.578947368421
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24676v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24676v1.txt",
+    "statistics": {
+      "total_characters": 30148,
+      "total_words": 3676,
+      "total_pages": 6,
+      "sections_found": 7,
+      "tables_found": 0,
+      "avg_words_per_page": 612.6666666666666
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24677v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24677v1.txt",
+    "statistics": {
+      "total_characters": 47257,
+      "total_words": 1931,
+      "total_pages": 15,
+      "sections_found": 8,
+      "tables_found": 0,
+      "avg_words_per_page": 128.73333333333332
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24687v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24687v1.txt",
+    "statistics": {
+      "total_characters": 66535,
+      "total_words": 9836,
+      "total_pages": 24,
+      "sections_found": 7,
+      "tables_found": 3,
+      "avg_words_per_page": 409.8333333333333
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24688v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24688v1.txt",
+    "statistics": {
+      "total_characters": 79391,
+      "total_words": 9978,
+      "total_pages": 17,
+      "sections_found": 6,
+      "tables_found": 16,
+      "avg_words_per_page": 586.9411764705883
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2510.24690v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24690v1.txt",
+    "statistics": {
+      "total_characters": 27956,
+      "total_words": 1483,
+      "total_pages": 9,
+      "sections_found": 7,
+      "tables_found": 0,
+      "avg_words_per_page": 164.77777777777777
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24694v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24694v1.txt",
+    "statistics": {
+      "total_characters": 65837,
+      "total_words": 3985,
+      "total_pages": 24,
+      "sections_found": 9,
+      "tables_found": 15,
+      "avg_words_per_page": 166.04166666666666
+    },
+    "sections_found": 9
+  },
+  {
+    "pdf": "2510.24697v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24697v1.txt",
+    "statistics": {
+      "total_characters": 67819,
+      "total_words": 3919,
+      "total_pages": 25,
+      "sections_found": 7,
+      "tables_found": 15,
+      "avg_words_per_page": 156.76
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24698v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24698v1.txt",
+    "statistics": {
+      "total_characters": 46902,
+      "total_words": 2636,
+      "total_pages": 16,
+      "sections_found": 8,
+      "tables_found": 24,
+      "avg_words_per_page": 164.75
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24699v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24699v1.txt",
+    "statistics": {
+      "total_characters": 84703,
+      "total_words": 6747,
+      "total_pages": 26,
+      "sections_found": 6,
+      "tables_found": 4,
+      "avg_words_per_page": 259.5
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2510.24700v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24700v1.txt",
+    "statistics": {
+      "total_characters": 70015,
+      "total_words": 5215,
+      "total_pages": 28,
+      "sections_found": 6,
+      "tables_found": 4,
+      "avg_words_per_page": 186.25
+    },
+    "sections_found": 6
+  },
+  {
+    "pdf": "2510.24701v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24701v1.txt",
+    "statistics": {
+      "total_characters": 67375,
+      "total_words": 3712,
+      "total_pages": 23,
+      "sections_found": 7,
+      "tables_found": 22,
+      "avg_words_per_page": 161.3913043478261
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24702v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24702v1.txt",
+    "statistics": {
+      "total_characters": 56101,
+      "total_words": 4605,
+      "total_pages": 17,
+      "sections_found": 8,
+      "tables_found": 28,
+      "avg_words_per_page": 270.88235294117646
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24703v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24703v1.txt",
+    "statistics": {
+      "total_characters": 39646,
+      "total_words": 6321,
+      "total_pages": 18,
+      "sections_found": 7,
+      "tables_found": 2,
+      "avg_words_per_page": 351.1666666666667
+    },
+    "sections_found": 7
+  },
+  {
+    "pdf": "2510.24704v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24704v1.txt",
+    "statistics": {
+      "total_characters": 53982,
+      "total_words": 4868,
+      "total_pages": 13,
+      "sections_found": 4,
+      "tables_found": 9,
+      "avg_words_per_page": 374.46153846153845
+    },
+    "sections_found": 4
+  },
+  {
+    "pdf": "2510.24705v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24705v1.txt",
+    "statistics": {
+      "total_characters": 20628,
+      "total_words": 1265,
+      "total_pages": 11,
+      "sections_found": 5,
+      "tables_found": 0,
+      "avg_words_per_page": 115.0
+    },
+    "sections_found": 5
+  },
+  {
+    "pdf": "2510.24706v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24706v1.txt",
+    "statistics": {
+      "total_characters": 84862,
+      "total_words": 4541,
+      "total_pages": 27,
+      "sections_found": 8,
+      "tables_found": 13,
+      "avg_words_per_page": 168.1851851851852
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24709v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24709v1.txt",
+    "statistics": {
+      "total_characters": 52908,
+      "total_words": 2816,
+      "total_pages": 21,
+      "sections_found": 4,
+      "tables_found": 0,
+      "avg_words_per_page": 134.0952380952381
+    },
+    "sections_found": 4
+  },
+  {
+    "pdf": "2510.24711v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24711v1.txt",
+    "statistics": {
+      "total_characters": 58639,
+      "total_words": 4669,
+      "total_pages": 20,
+      "sections_found": 8,
+      "tables_found": 29,
+      "avg_words_per_page": 233.45
+    },
+    "sections_found": 8
+  },
+  {
+    "pdf": "2510.24712v1.pdf",
+    "status": "success",
+    "output_file": "data\\extracted_text\\2510.24712v1.txt",
+    "statistics": {
+      "total_characters": 44360,
+      "total_words": 6381,
+      "total_pages": 13,
+      "sections_found": 3,
+      "tables_found": 0,
+      "avg_words_per_page": 490.84615384615387
+    },
+    "sections_found": 3
+  }
+]

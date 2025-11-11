@@ -1,0 +1,12 @@
+{
+  "mode": "full_pipeline",
+  "timestamp": "20251029_235119",
+  "statistics": {
+    "papers_fetched": 20,
+    "papers_downloaded": 20,
+    "papers_parsed": 20,
+    "papers_in_db": 0,
+    "kg_created": 0,
+    "embeddings_created": 0
+  }
+}

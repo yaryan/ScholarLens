@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: research_navigator_postgres
+    environment:
+      POSTGRES_USER: research_user
+      POSTGRES_PASSWORD: research_password_2024
+      POSTGRES_DB: research_papers_db
+      # Performance tuning for 16GB system
+      POSTGRES_SHARED_BUFFERS: 512MB
+      POSTGRES_EFFECTIVE_CACHE_SIZE: 1GB
+      POSTGRES_WORK_MEM: 32MB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U research_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Memory limits
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+
+  # Neo4j Graph Database
+  neo4j:
+    image: neo4j:5.12-community
+    container_name: research_navigator_neo4j
+    environment:
+      NEO4J_AUTH: neo4j/research_password_2024
+      # Optimized for 16GB RAM system
+      NEO4J_server_memory_heap_initial__size: 512m
+      NEO4J_server_memory_heap_max__size: 1G
+      NEO4J_server_memory_pagecache_size: 512m
+      NEO4J_dbms_memory_transaction_total_max: 256m
+    ports:
+      - "7474:7474"  # HTTP
+      - "7687:7687"  # Bolt
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_plugins:/plugins
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p research_password_2024 'RETURN 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Memory limits
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+
+volumes:
+  postgres_data:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_plugins:

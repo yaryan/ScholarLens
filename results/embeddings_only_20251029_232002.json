@@ -1,0 +1,11 @@
+{
+  "mode": "embeddings_only",
+  "timestamp": "20251029_232002",
+  "statistics": {
+    "total_papers": 11,
+    "successful": 0,
+    "failed": 11,
+    "total_chunks": 0,
+    "avg_chunks_per_paper": 0
+  }
+}

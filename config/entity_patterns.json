@@ -1,0 +1,67 @@
+{
+  "methods": {
+    "patterns": [
+      "\\b(?:convolutional|recurrent|graph|transformer|attention)\\s+neural\\s+network[s]?\\b",
+      "\\b(?:CNN|RNN|GNN|GAN|VAE|LSTM|GRU|BERT|GPT|ResNet|VGG|AlexNet|DenseNet)\\b",
+      "\\b(?:gradient\\s+descent|backpropagation|dropout|batch\\s+normalization)\\b",
+      "\\b(?:random\\s+forest|decision\\s+tree|support\\s+vector\\s+machine|SVM)\\b",
+      "\\b(?:k-means|hierarchical\\s+clustering|DBSCAN|mean\\s+shift)\\b",
+      "\\b(?:reinforcement\\s+learning|Q-learning|policy\\s+gradient|actor-critic)\\b",
+      "\\b(?:transfer\\s+learning|fine-tuning|pre-training)\\b",
+      "\\b(?:ensemble\\s+learning|boosting|bagging|stacking)\\b"
+    ],
+    "known_methods": [
+      "Convolutional Neural Network",
+      "Recurrent Neural Network",
+      "Transformer",
+      "LSTM",
+      "GRU",
+      "BERT",
+      "GPT",
+      "ResNet",
+      "VGG",
+      "Random Forest",
+      "Support Vector Machine",
+      "K-means",
+      "DBSCAN",
+      "Gradient Descent",
+      "Backpropagation",
+      "Dropout",
+      "Batch Normalization"
+    ]
+  },
+  "datasets": {
+    "patterns": [
+      "\\b(?:ImageNet|COCO|MNIST|CIFAR-10|CIFAR-100|Pascal\\s+VOC)\\b",
+      "\\b(?:SQuAD|GLUE|SuperGLUE|WikiText|Common\\s+Crawl)\\b",
+      "\\b(?:MovieLens|Netflix|Amazon\\s+Reviews)\\b",
+      "\\b(?:UCI\\s+Machine\\s+Learning\\s+Repository)\\b",
+      "\\b(?:Kinetics|ActivityNet|UCF101)\\b",
+      "\\b(?:LibriSpeech|VoxCeleb|AudioSet)\\b"
+    ],
+    "known_datasets": [
+      "ImageNet",
+      "COCO",
+      "MNIST",
+      "CIFAR-10",
+      "CIFAR-100",
+      "Pascal VOC",
+      "SQuAD",
+      "GLUE",
+      "SuperGLUE",
+      "WikiText",
+      "MovieLens",
+      "UCI Machine Learning Repository"
+    ]
+  },
+  "institutions": {
+    "keywords": [
+      "University",
+      "Institute",
+      "College",
+      "Laboratory",
+      "Research Center",
+      "School of"
+    ]
+  }
+}
