@@ -68,11 +68,13 @@ from utils.export_utils import (
     generate_csv_export,
     create_summary_statistics as create_export_stats
 )
+from utils.theme import register_plotly_theme, get_css, hero_banner, NODE_TYPE_COLORS
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import networkx as nx
 
+register_plotly_theme()
 init_db()
 
 if 'search_index' not in st.session_state:
@@ -84,6 +86,7 @@ if 'chat_history' not in st.session_state:
 
 
 def main():
+    st.markdown(get_css(), unsafe_allow_html=True)
     st.sidebar.title("ScholarLens")
     st.sidebar.markdown("*AI-Powered Research Intelligence*")
     st.sidebar.markdown("---")
@@ -119,8 +122,10 @@ def main():
 
 def page_upload():
     """ScholarLens - Paper Upload"""
-    st.title("ScholarLens")
-    st.markdown("*Making Research Intuitive, Interactive, and Insightful*")
+    st.markdown(
+        hero_banner("ScholarLens", "Making Research Intuitive, Interactive, and Insightful"),
+        unsafe_allow_html=True
+    )
     
     col1, col2 = st.columns([2, 1])
     
@@ -541,8 +546,10 @@ def page_upload():
 
 def page_knowledge_graph():
     """Interactive Knowledge Graph Exploration"""
-    st.title("Knowledge Graph Explorer")
-    st.markdown("Explore connections between papers, methods, datasets, and authors")
+    st.markdown(
+        hero_banner("Knowledge Graph Explorer", "Explore connections between papers, methods, datasets, and authors"),
+        unsafe_allow_html=True
+    )
     
     session = get_session()
     
@@ -770,20 +777,20 @@ def page_knowledge_graph():
                     edge_y.extend([y0, y1, None])
                 
                 edge_trace = go.Scatter(x=edge_x, y=edge_y, mode='lines',
-                                       line=dict(width=0.5, color='#888'), hoverinfo='none')
-                
+                                       line=dict(width=0.5, color='rgba(168,179,199,0.35)'), hoverinfo='none')
+
                 node_x, node_y, node_text = [], [], []
                 for node in G.nodes():
                     x, y = pos[node]
                     node_x.append(x)
                     node_y.append(y)
                     node_text.append(G.nodes[node].get('name', str(node)))
-                
+
                 node_trace = go.Scatter(
                     x=node_x, y=node_y, mode='markers+text',
-                    marker=dict(size=15, color='#9C27B0'),
+                    marker=dict(size=15, color=NODE_TYPE_COLORS['author'], line=dict(width=1.5, color='#0d1220')),
                     text=node_text, textposition='top center',
-                    textfont=dict(size=8)
+                    textfont=dict(size=8, color='#a8b3c7')
                 )
                 
                 fig = go.Figure(data=[edge_trace, node_trace])
@@ -812,8 +819,10 @@ def page_knowledge_graph():
 
 def page_qa():
     """Evidence-Backed Q&A with RAG"""
-    st.title("Research Q&A")
-    st.markdown("Ask questions and get evidence-backed answers with source citations")
+    st.markdown(
+        hero_banner("Research Q&A", "Ask questions and get evidence-backed answers with source citations"),
+        unsafe_allow_html=True
+    )
     
     if not openai_available():
         st.warning("OpenAI API key not configured. Please add your API key to use this feature.")
@@ -889,8 +898,10 @@ def page_qa():
 
 def page_summaries():
     """Multi-Audience Summaries"""
-    st.title("Multi-Audience Summaries")
-    st.markdown("Generate tailored summaries for different audiences")
+    st.markdown(
+        hero_banner("Multi-Audience Summaries", "Generate tailored summaries for different audiences"),
+        unsafe_allow_html=True
+    )
     
     if not openai_available():
         st.warning("OpenAI API key not configured. Please add your API key to use this feature.")
@@ -970,8 +981,10 @@ def page_summaries():
 
 def page_analytics():
     """Analytics Dashboard with 8+ SQL Reports"""
-    st.title("Analytics Dashboard")
-    st.markdown("Research intelligence with advanced SQL analytics")
+    st.markdown(
+        hero_banner("Analytics Dashboard", "Research intelligence with advanced SQL analytics"),
+        unsafe_allow_html=True
+    )
     
     session = get_session()
     
@@ -1163,8 +1176,10 @@ def page_analytics():
 
 def page_learning():
     """Learning Mode with Flashcards and Quizzes"""
-    st.title("Learning Mode")
-    st.markdown("Interactive learning tools: concept maps, flashcards, and quizzes")
+    st.markdown(
+        hero_banner("Learning Mode", "Interactive learning tools: concept maps, flashcards, and quizzes"),
+        unsafe_allow_html=True
+    )
     
     if not openai_available():
         st.warning("OpenAI API key not configured. Please add your API key to use this feature.")
@@ -1327,8 +1342,10 @@ def page_learning():
 
 def page_workspace():
     """Personal Research Workspace"""
-    st.title("Research Workspace")
-    st.markdown("Organize your research: saved papers, notes, and reading lists")
+    st.markdown(
+        hero_banner("Research Workspace", "Organize your research: saved papers, notes, and reading lists"),
+        unsafe_allow_html=True
+    )
     
     session = get_session()
     

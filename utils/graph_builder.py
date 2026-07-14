@@ -8,6 +8,8 @@ import plotly.graph_objects as go
 from typing import List, Dict, Tuple, Optional
 import json
 
+from utils.theme import NODE_TYPE_COLORS, CATEGORICAL, TEXT_PRIMARY, TEXT_SECONDARY, BG_SURFACE
+
 
 def build_knowledge_graph(papers: List[Dict], methods: List[Dict], 
                           datasets: List[Dict], authors: List[Dict]) -> nx.Graph:
@@ -114,7 +116,7 @@ def create_plotly_graph(G: nx.Graph, title: str = "Knowledge Graph", show_labels
             text="No connected nodes to display.<br>Upload papers to build relationships.",
             xref="paper", yref="paper",
             x=0.5, y=0.5, showarrow=False,
-            font=dict(size=16, color='gray')
+            font=dict(size=16, color=TEXT_SECONDARY)
         )
         fig.update_layout(
             title=dict(text=title, x=0.5),
@@ -133,15 +135,9 @@ def create_plotly_graph(G: nx.Graph, title: str = "Knowledge Graph", show_labels
     iterations = min(100, max(50, num_nodes * 2))
     
     pos = nx.spring_layout(H, k=k_value, iterations=iterations, seed=42)
-    
-    node_colors = {
-        'paper': '#4CAF50',
-        'method': '#2196F3',
-        'dataset': '#FF9800',
-        'author': '#9C27B0',
-        'institution': '#E91E63'
-    }
-    
+
+    node_colors = NODE_TYPE_COLORS
+
     edge_x = []
     edge_y = []
     for edge in H.edges():
@@ -149,12 +145,12 @@ def create_plotly_graph(G: nx.Graph, title: str = "Knowledge Graph", show_labels
         x1, y1 = pos[edge[1]]
         edge_x.extend([x0, x1, None])
         edge_y.extend([y0, y1, None])
-    
+
     edge_trace = go.Scatter(
         x=edge_x,
         y=edge_y,
         mode='lines',
-        line=dict(width=1, color='rgba(150,150,150,0.5)'),
+        line=dict(width=1, color='rgba(168,179,199,0.3)'),
         hoverinfo='none',
         showlegend=False
     )
@@ -233,7 +229,7 @@ def create_plotly_graph(G: nx.Graph, title: str = "Knowledge Graph", show_labels
         modebar=dict(
             orientation='v',
             bgcolor='rgba(0,0,0,0.5)',
-            activecolor='#4CAF50'
+            activecolor=CATEGORICAL[0]
         ),
         modebar_add=['pan2d', 'zoom2d', 'zoomIn2d', 'zoomOut2d', 'resetScale2d']
     )
@@ -266,7 +262,7 @@ def create_method_dag_visualization(G: nx.DiGraph, title: str = "Concept Depende
     
     edge_trace = go.Scatter(
         x=edge_x, y=edge_y,
-        line=dict(width=2, color='#888'),
+        line=dict(width=2, color='rgba(168,179,199,0.35)'),
         hoverinfo='none',
         mode='lines'
     )
@@ -291,8 +287,8 @@ def create_method_dag_visualization(G: nx.DiGraph, title: str = "Concept Depende
         textposition='top center',
         marker=dict(
             size=node_size,
-            color='#2196F3',
-            line=dict(width=2, color='white')
+            color=CATEGORICAL[0],
+            line=dict(width=2, color=BG_SURFACE)
         )
     )
     

@@ -163,9 +163,9 @@ def get_collaboration_network_density(session: Session) -> Dict:
     
     collab_query = text("""
         SELECT COUNT(DISTINCT 
-            CASE WHEN pa1.author_id < pa2.author_id 
-            THEN CONCAT(pa1.author_id, '-', pa2.author_id)
-            ELSE CONCAT(pa2.author_id, '-', pa1.author_id)
+            CASE WHEN pa1.author_id < pa2.author_id
+            THEN pa1.author_id || '-' || pa2.author_id
+            ELSE pa2.author_id || '-' || pa1.author_id
             END
         ) as collaboration_pairs
         FROM paper_authors pa1
