@@ -7,7 +7,7 @@ import os
 from datetime import datetime
 from sqlalchemy import (
     create_engine, Column, Integer, String, Text, DateTime, Float,
-    ForeignKey, Table, Boolean, JSON, UniqueConstraint
+    ForeignKey, Table, Boolean, JSON, UniqueConstraint, text
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -27,7 +27,13 @@ if not DATABASE_URL:
     DATABASE_URL = "sqlite:///scholarlens.db"
     print("Using SQLite as fallback database.")
 
-if DATABASE_URL.startswith("postgresql"):
+IS_POSTGRES = DATABASE_URL.startswith("postgresql")
+
+# Embedding vectors (RAG retrieval) require Postgres + pgvector. On SQLite,
+# embeddings fall back to plain JSON and vector search is unavailable.
+EMBEDDING_DIM = 384
+
+if IS_POSTGRES:
     engine = create_engine(
         DATABASE_URL,
         pool_pre_ping=True,
@@ -36,8 +42,14 @@ if DATABASE_URL.startswith("postgresql"):
         max_overflow=10,
         connect_args={"connect_timeout": 10}
     )
+    with engine.connect() as conn:
+        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+        conn.commit()
+    from pgvector.sqlalchemy import Vector
+    EmbeddingColumn = Vector(EMBEDDING_DIM)
 else:
     engine = create_engine(DATABASE_URL)
+    EmbeddingColumn = JSON
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -91,7 +103,7 @@ class Paper(Base):
     venue = Column(String(200))
     citation_count = Column(Integer, default=0)
     pdf_path = Column(String(500))
-    embedding = Column(JSON)  # Store vector embedding as JSON
+    embedding = Column(EmbeddingColumn)  # title+abstract embedding, for paper-level similarity
     topics = Column(JSON)  # Store extracted topics
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -196,7 +208,7 @@ class PaperChunk(Base):
     chunk_index = Column(Integer, nullable=False)
     content = Column(Text, nullable=False)
     section = Column(String(100))  # abstract, introduction, methods, results, etc.
-    embedding = Column(JSON)  # Store vector embedding as JSON
+    embedding = Column(EmbeddingColumn)  # sentence-transformers embedding, for RAG retrieval
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationships

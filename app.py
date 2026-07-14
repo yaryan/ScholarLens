@@ -27,7 +27,13 @@ from utils.openai_helper import (
     generate_analogy,
     extract_key_insights
 )
-from utils.semantic_search import PaperSearchIndex, find_similar_papers
+from utils.semantic_search import (
+    search_chunks,
+    find_similar_papers,
+    embed_and_store_chunks,
+    embed_and_store_paper,
+    backfill_missing_embeddings
+)
 from utils.graph_builder import (
     build_knowledge_graph,
     build_method_dag,
@@ -77,8 +83,6 @@ import networkx as nx
 register_plotly_theme()
 init_db()
 
-if 'search_index' not in st.session_state:
-    st.session_state.search_index = PaperSearchIndex()
 if 'current_paper_id' not in st.session_state:
     st.session_state.current_paper_id = None
 if 'chat_history' not in st.session_state:
@@ -227,6 +231,7 @@ def page_upload():
                                     author.institutions.append(institution)
                         
                         chunks = chunk_text(result['text'], chunk_size=1000, overlap=200)
+                        paper_chunks = []
                         for chunk in chunks:
                             paper_chunk = PaperChunk(
                                 paper_id=paper.id,
@@ -235,15 +240,11 @@ def page_upload():
                                 section=get_section_for_chunk(chunk['content'], result['sections'])
                             )
                             session.add(paper_chunk)
-                        
-                        st.session_state.search_index.index_paper(
-                            paper.id,
-                            paper.title,
-                            paper.abstract,
-                            chunks,
-                            [m['name'] for m in entities['methods']]
-                        )
-                        
+                            paper_chunks.append(paper_chunk)
+
+                        embed_and_store_paper(paper)
+                        embed_and_store_chunks(paper_chunks)
+
                         session.commit()
                         st.success(f"Processed: {uploaded_file.name}")
                     else:
@@ -381,29 +382,35 @@ def page_upload():
     
     st.markdown("---")
     st.subheader("Semantic Search")
-    
+
+    if st.button("Rebuild Search Index"):
+        with st.spinner("Computing embeddings for any un-indexed papers..."):
+            session = get_session()
+            counts = backfill_missing_embeddings(session)
+            session.close()
+        st.success(f"Indexed {counts['papers']} paper(s) and {counts['chunks']} chunk(s).")
+
     search_query = st.text_input("Search papers by concept, method, or keyword")
-    
+
     if search_query:
-        results = st.session_state.search_index.search_all(search_query, top_k=5)
-        
+        session = get_session()
+        results = search_chunks(session, search_query, top_k=5)
+
         if results:
             st.write(f"Found {len(results)} relevant results:")
             for result in results:
-                with st.expander(f"Score: {result['score']:.3f} | {result.get('source', 'content')}"):
+                with st.expander(f"Score: {result['score']:.3f} | {result['paper_title'][:60]}"):
+                    st.write(f"**Section:** {result['section']}")
                     st.write(result['content'][:500] + "...")
         else:
-            session = get_session()
-            papers = session.query(Paper).all()
-            paper_dicts = [{'id': p.id, 'title': p.title, 'abstract': p.abstract, 'content': p.content} for p in papers]
-            session.close()
-            
-            if paper_dicts:
-                similar = find_similar_papers(search_query, paper_dicts, top_k=3)
-                if similar:
-                    st.write("Similar papers found:")
-                    for paper in similar:
-                        st.write(f"- {paper['title']} (Score: {paper.get('similarity_score', 0):.3f})")
+            similar = find_similar_papers(session, search_query, top_k=3)
+            if similar:
+                st.write("Similar papers found:")
+                for paper in similar:
+                    st.write(f"- {paper['title']} (Score: {paper['similarity_score']:.3f})")
+            else:
+                st.info("No matches yet. If you just upgraded to semantic search, use \"Rebuild Search Index\" below.")
+        session.close()
     
     st.markdown("---")
     st.subheader("Fetch from Open-Access Sources")
@@ -842,25 +849,15 @@ def page_qa():
         
         if st.button("Get Answer", type="primary") and question:
             with st.spinner("Searching for relevant context and generating answer..."):
-                if selected_paper == "All Papers":
-                    chunks = session.query(PaperChunk).all()
-                else:
-                    paper_id = paper_options[selected_paper]
-                    chunks = session.query(PaperChunk).filter_by(paper_id=paper_id).all()
-                
-                if chunks:
-                    search_results = st.session_state.search_index.search_chunks(question, top_k=5)
-                    
-                    if not search_results:
-                        search_results = [{'content': c.content, 'paper_id': c.paper_id, 
-                                         'section': c.section} for c in chunks[:5]]
-                    
-                    for result in search_results:
-                        if 'paper_id' in result:
-                            paper = session.query(Paper).get(result['paper_id'])
-                            if paper:
-                                result['paper_title'] = paper.title
-                    
+                paper_id = None if selected_paper == "All Papers" else paper_options[selected_paper]
+                has_chunks = session.query(PaperChunk.id)
+                if paper_id is not None:
+                    has_chunks = has_chunks.filter_by(paper_id=paper_id)
+                has_chunks = has_chunks.first() is not None
+
+                if has_chunks:
+                    search_results = search_chunks(session, question, top_k=5, paper_id=paper_id)
+
                     response = answer_question(question, search_results)
                     
                     st.markdown("### Answer")
